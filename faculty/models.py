@@ -15,6 +15,10 @@ class Department(models.Model):
 
 
 class Specialty(models.Model):
+    class Level(models.TextChoices):
+        BACHELOR = "B", "Бакалаврат"
+        MASTERS = "M", "Магістратура"
+
     name = models.CharField(max_length=100, verbose_name="Назва")
     code = models.CharField(max_length=3, verbose_name="Код")
     desc = models.TextField(verbose_name="Опис")
@@ -24,11 +28,13 @@ class Specialty(models.Model):
     department = models.ForeignKey(Department, on_delete=models.PROTECT,
                                    related_name="specialties", verbose_name="Кафедра")
     list_of_subjects = models.TextField(verbose_name="Перелік предметів")
+    level = models.CharField("Рівень", choices=Level, default=Level.BACHELOR,
+                             max_length=1)
 
     class Meta:
         verbose_name = "Спеціальність"
         verbose_name_plural = "Спеціальності"
-        ordering = ["code"]
+        ordering = ["code", "level"]
 
     def __str__(self):
         return f"{self.name}"
@@ -37,7 +43,7 @@ class Specialty(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я")
     position = models.CharField(max_length=100, verbose_name="Посада")
-    degree = models.CharField(max_length=100, verbose_name="Ступінь")
+    degree = models.CharField(max_length=100, verbose_name="Ступінь", blank=True)
     department = models.ForeignKey(Department, on_delete=models.PROTECT,
                                    related_name="teachers", verbose_name="Кафедра")
 
