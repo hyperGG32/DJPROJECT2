@@ -49,3 +49,16 @@ class Teacher(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+
+class FacultyInformation(models.Model):
+    description = models.TextField(verbose_name="Опис")
+    address = models.CharField(max_length=128, verbose_name="Адреса")
+    phone = models.CharField(max_length=25, verbose_name="Номер телефону")
+    email = models.EmailField(verbose_name="Електронна пошта")
+
+    class Meta:
+        verbose_name = "Інформація"
+        verbose_name_plural = "Інформація"
+
+    def __str__(self):
+        return "Інформація про факультет"
