@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Не задано{% endblock %}</title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'faculty:main_page'%}">Головна</a></li>
+            <li><a href="{% url 'faculty:departments' %}">Кафедри</a></li>
+            <li><a href="{% url 'faculty:programs' %}">Спеціальності</a></li>
+        </ul>
+    </nav>
+  </header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

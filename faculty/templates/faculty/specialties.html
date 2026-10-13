@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+    Спеціальності
+{% endblock %}
+{% block content %}
 <h1>Спеціальності</h1>
 <ul>
     {% for specialty in specialties %}
@@ -15,7 +13,4 @@
         </li>
     {% endfor %}
 </ul>
-
-
-</body>
-</html>
+{% endblock %}

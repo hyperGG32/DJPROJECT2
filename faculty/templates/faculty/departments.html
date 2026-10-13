@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+    Кафедри
+{% endblock %}
+{% block content %}
 <ul>
 {% for department in departments %}
 
@@ -13,7 +11,7 @@
         Завідувач:
         {{ department.boss }}
     <ul>
-    {% for specialty in specialty.specialty_list %}
+    {% for specialty in department.specialties.all %}
         <li><a href="{% url 'faculty:ind_specialty' specialty.id %}"
         >{{ specialty.name }}</a></li>
     {% empty %}
@@ -23,5 +21,4 @@
 </li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Факультет Природничих Наук</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+    Факультет Природничих Наук
+{% endblock %}
+{% block content %}
 <h1>Факультет Природничих Наук</h1>
 <p> {{ faculty.description|linebreaksbr }}</p>
 <h2>Контакти</h2>
@@ -13,5 +11,4 @@
     <a href="tel:{{ faculty.phone }}">{{ faculty.phone }}</a><br>
     <a href="mailto:{{ faculty.email }}">{{ faculty.email }}</a>
 </address>
-</body>
-</html>
+{% endblock %}
