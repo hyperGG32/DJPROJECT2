@@ -7,9 +7,11 @@
 <ul>
 {% for exchange in exchanges %}
     <li>
-        {{ exchange.university }} <br> {{ exchange.description }} <br>
+        {{ exchange.university }}{% if exchange.country %}, {{ exchange.country }}
+    {% endif %}<br> {{ exchange.description }} <br>
         Мови: {{ exchange.languages }} <br>
-    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>{{ exchange.slots }}</li>
+    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>Місць: {{ exchange.slots }}
+    </li>
     {% empty %}
     <li>Нема програм</li>
 {% endfor %}
