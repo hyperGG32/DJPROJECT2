@@ -10,7 +10,7 @@
         {{ exchange.university }}{% if exchange.country %}, {{ exchange.country }}
     {% endif %}<br> {{ exchange.description }} <br>
         Мови: {{ exchange.languages }} <br>
-    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>Місць: {{ exchange.slots }}
+    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>Місць: {{ exchange.seats }}
     </li>
     {% empty %}
     <li>Нема програм</li>
