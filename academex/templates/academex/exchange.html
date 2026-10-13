@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 {% block title %}
-    Програми обміну
+  Програми обміну
 {% endblock %}
 {% block content %}
-    <h1>Програми обміну</h1>
-<ul>
-{% for exchange in exchanges %}
-    <li>
+  <h1>Програми обміну</h1>
+  <ul>
+    {% for exchange in exchanges %}
+      <li>
         {{ exchange.university }}{% if exchange.country %}, {{ exchange.country }}
     {% endif %}<br> {{ exchange.description }} <br>
-        Мови: {{ exchange.languages }} <br>
-    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>Місць: {{ exchange.seats }}
+    Мови: {{ exchange.languages }}
+    <br>
+    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }}
+    <br>
+    Місць: {{ exchange.seats }}
     <br>Прийом{% if exchange.is_closed %} завершено{% else %} триває{% endif %}
-    </li>
-    {% empty %}
-    <li>Нема програм</li>
+  </li>
+{% empty %}
+  <li>Нема програм</li>
 {% endfor %}
 </ul>
 {% endblock %}

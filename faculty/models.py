@@ -23,13 +23,19 @@ class Specialty(models.Model):
     code = models.CharField(max_length=3, verbose_name="Код")
     desc = models.TextField(verbose_name="Опис")
     coord_name = models.CharField(max_length=100, verbose_name="Ім'я координатора")
-    coord_contact = models.CharField(max_length=100, verbose_name="Контакт "
-                                                                  "координатора")
-    department = models.ForeignKey(Department, on_delete=models.PROTECT,
-                                   related_name="specialties", verbose_name="Кафедра")
+    coord_contact = models.CharField(
+        max_length=100, verbose_name="Контакт координатора"
+    )
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.PROTECT,
+        related_name="specialties",
+        verbose_name="Кафедра",
+    )
     list_of_subjects = models.TextField(verbose_name="Перелік предметів")
-    level = models.CharField("Рівень", choices=Level, default=Level.BACHELOR,
-                             max_length=1)
+    level = models.CharField(
+        "Рівень", choices=Level, default=Level.BACHELOR, max_length=1
+    )
 
     class Meta:
         verbose_name = "Спеціальність"
@@ -40,16 +46,21 @@ class Specialty(models.Model):
         return f"{self.name}"
 
     def subjects(self):
-        return [line.strip() for line in self.list_of_subjects.splitlines() if
-                line.strip()]
+        return [
+            line.strip() for line in self.list_of_subjects.splitlines() if line.strip()
+        ]
 
 
 class Teacher(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я")
     position = models.CharField(max_length=100, verbose_name="Посада")
     degree = models.CharField(max_length=100, verbose_name="Ступінь", blank=True)
-    department = models.ForeignKey(Department, on_delete=models.PROTECT,
-                                   related_name="teachers", verbose_name="Кафедра")
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.PROTECT,
+        related_name="teachers",
+        verbose_name="Кафедра",
+    )
 
     class Meta:
         verbose_name = "Викладач"

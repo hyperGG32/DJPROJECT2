@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from faculty.models import Department, Specialty, Teacher, FacultyInformation
+from faculty.models import Department, FacultyInformation, Specialty, Teacher
 
 admin.site.register(Department)
 admin.site.register(Specialty)

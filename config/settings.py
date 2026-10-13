@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "academex.apps.AcademexConfig",
-    "faculty.apps.FacultyConfig"
+    "faculty.apps.FacultyConfig",
 ]
 
 MIDDLEWARE = [

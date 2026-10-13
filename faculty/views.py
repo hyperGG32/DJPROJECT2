@@ -1,8 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
-import faculty
-from faculty.models import Department, Specialty, FacultyInformation
+from faculty.models import Department, FacultyInformation, Specialty
 
 
 def main_page(request):
@@ -22,7 +20,7 @@ def departments(request):
 
 def ind_department(request, dep_id):
     depart = get_object_or_404(Department, id=dep_id)
-    return render(request, "faculty/ind_department.html", {"department" : depart})
+    return render(request, "faculty/ind_department.html", {"department": depart})
 
 
 def ind_specialty(request, spec_id):

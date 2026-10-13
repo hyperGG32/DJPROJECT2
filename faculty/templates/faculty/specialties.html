@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block title %}
-    Спеціальності
+  Спеціальності
 {% endblock %}
 {% block content %}
-<h1>Спеціальності</h1>
-<ul>
+  <h1>Спеціальності</h1>
+  <ul>
     {% for specialty in specialties %}
-        <li><a href="{% url 'faculty:ind_specialty' specialty.id %}"
-        >{{ specialty.code }} {{ specialty.name }}</a>
-            <p> {{ specialty.desc|truncatewords:50 }}</p>
-            <p> Координатор: {{ specialty.coord_name }}, {{ specialty.coord_contact }}</p>
-        </li>
+      <li><a href="{% url 'faculty:ind_specialty' specialty.id %}">{{ specialty.code }} {{ specialty.name }}</a>
+        <p>{{ specialty.desc|truncatewords:50 }}</p>
+        <p>Координатор: {{ specialty.coord_name }}, {{ specialty.coord_contact }}</p>
+      </li>
     {% endfor %}
-</ul>
+  </ul>
 {% endblock %}
