@@ -3,18 +3,31 @@
   {{ specialty.name }}
 {% endblock %}
 {% block content %}
-  <h2>
+  <p class="eyebrow">
     <a href="{% url 'faculty:ind_department' specialty.department.id %}">{{ specialty.department.name }}</a>
-  </h2>
-  <h1>{{ specialty.code }} {{ specialty.name }}  {{ specialty.get_level_display }}</h1>
-  <p>{{ specialty.desc }}</p>
-  <h2>Дисципліни</h2>
-  <ul>
-    {% for subject in specialty.subjects %}
-      <li>{{ subject }}</li>
-    {% empty %}
-      <li>Немає дисциплін</li>
-    {% endfor %}
-  </ul>
-  <p>Координатор: {{ specialty.coord_name }}, {{ specialty.coord_contact }}</p>
+  </p>
+  <h1 class="page-title">{{ specialty.name }}</h1>
+  <div class="card-tags">
+    <span class="tag">{{ specialty.code }}</span>
+    <span class="tag tag-muted">{{ specialty.get_level_display }}</span>
+  </div>
+  <div class="layout-split">
+    <section class="prose">
+      <h2>Про програму</h2>
+      <p>{{ specialty.desc|linebreaksbr }}</p>
+      <h2>Дисципліни</h2>
+      <ul class="subject-list">
+        {% for subject in specialty.subjects %}
+          <li>{{ subject }}</li>
+        {% empty %}
+          <li>Немає дисциплін</li>
+        {% endfor %}
+      </ul>
+    </section>
+    <aside class="card contact-card">
+      <h2>Координатор набору</h2>
+      <p>{{ specialty.coord_name }}</p>
+      <p>{{ specialty.coord_contact }}</p>
+    </aside>
+  </div>
 {% endblock %}

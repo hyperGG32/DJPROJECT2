@@ -3,26 +3,34 @@
   {{ department.name }}
 {% endblock %}
 {% block content %}
-  <h1>{{ department.name }}</h1>
-  <p>Завідувач: {{ department.boss }}</p>
+  <p class="eyebrow">Кафедра</p>
+  <h1 class="page-title">{{ department.name }}</h1>
+  <p class="lead">
+    <span class="meta-label">Завідувач</span>
+    {{ department.boss }}
+  </p>
   <h2>Спеціальності</h2>
-  <ul>
-    {% for specialty in department.specialties.specialty_list %}
-      <li><a href="{% url 'faculty:ind_specialty' specialty.id %}">{{ specialty.name }}</a></li>
+  <ul class="link-list">
+    {% for specialty in department.specialties.all %}
+      <li>
+        <a href="{% url 'faculty:ind_specialty' specialty.id %}">{{ specialty.name }}</a>
+      </li>
     {% empty %}
-      <li>Немає спеціальностей</li>
+      <li class="muted">Немає спеціальностей</li>
     {% endfor %}
   </ul>
-  <h2>Викладачі:</h2>
-  <ul>
+  <h2>Викладачі</h2>
+  <ul class="people">
     {% for teacher in department.teachers.all %}
-      <li>
-        {{ teacher.name }}, посада:
-        {{ teacher.position }}{% if teacher.degree %}, ступінь {{ teacher.degree }}
-    {% endif %}
-  </li>
-{% empty %}
-  <li>Немає викладачів</li>
-{% endfor %}
-</ul>
+      <li class="person">
+        <span class="person-name">{{ teacher.name }}</span>
+        <span class="person-role">
+          {{ teacher.position }}
+          {% if teacher.degree %}· {{ teacher.degree }}{% endif %}
+        </span>
+      </li>
+    {% empty %}
+      <li class="muted">Немає викладачів</li>
+    {% endfor %}
+  </ul>
 {% endblock %}

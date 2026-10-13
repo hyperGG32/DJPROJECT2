@@ -1,22 +1,60 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Не задано{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block title %}Факультет природничих наук{% endblock %}
+    · ФПрН НаУКМА</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="{% url 'faculty:main_page' %}">Головна</a></li>
-          <li><a href="{% url 'faculty:departments' %}">Кафедри</a></li>
-          <li><a href="{% url 'faculty:programs' %}">Спеціальності</a></li>
-          <li><a href="{% url 'academex:exchange' %}">Програма обміну</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
+    {% with ns=request.resolver_match.namespace page=request.resolver_match.url_name %}
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="brand" href="{% url 'faculty:main_page' %}">
+            <span class="brand-mark">КМА</span>
+            <span class="brand-text">
+              <span class="brand-title">Факультет природничих наук</span>
+              <span class="brand-sub">Національний університет «Києво-Могилянська академія»</span>
+            </span>
+          </a>
+          <nav class="site-nav" aria-label="Головне меню">
+            <ul>
+              <li>
+                <a href="{% url 'faculty:main_page' %}"
+                   {% if page == "main_page" %}class="active" aria-current="page"{% endif %}>Головна</a>
+              </li>
+              <li>
+                <a href="{% url 'faculty:departments' %}"
+                   {% if page == "departments" or page == "ind_department" %}class="active" aria-current="page"{% endif %}>Кафедри</a>
+              </li>
+              <li>
+                <a href="{% url 'faculty:programs' %}"
+                   {% if page == "programs" or page == "ind_specialty" %}class="active" aria-current="page"{% endif %}>Спеціальності</a>
+              </li>
+              <li>
+                <a href="{% url 'academex:exchange' %}"
+                   {% if ns == "academex" %}class="active" aria-current="page"{% endif %}>Програми обміну</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    {% endwith %}
+    <main class="container main">
       {% block content %}{% endblock %}
     </main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>Факультет природничих наук НаУКМА</span>
+        <a href="https://www.ukma.edu.ua/">ukma.edu.ua</a>
+      </div>
+    </footer>
   </body>
 </html>

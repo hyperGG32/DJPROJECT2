@@ -3,21 +3,43 @@
   Програми обміну
 {% endblock %}
 {% block content %}
-  <h1>Програми обміну</h1>
-  <ul>
+  <h1 class="page-title">Програми обміну</h1>
+  <ul class="cards">
     {% for exchange in exchanges %}
-      <li>
-        {{ exchange.university }}{% if exchange.country %}, {{ exchange.country }}
-    {% endif %}<br> {{ exchange.description }} <br>
-    Мови: {{ exchange.languages }}
-    <br>
-    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }}
-    <br>
-    Місць: {{ exchange.seats }}
-    <br>Прийом{% if exchange.is_closed %} завершено{% else %} триває{% endif %}
-  </li>
-{% empty %}
-  <li>Нема програм</li>
-{% endfor %}
-</ul>
+      <li class="card">
+        <div class="card-tags">
+          {% if exchange.country %}<span class="tag tag-muted">{{ exchange.country }}</span>{% endif %}
+          {% if exchange.is_closed %}
+            <span class="status status-closed">Прийом завершено</span>
+          {% else %}
+            <span class="status status-open">Прийом триває</span>
+          {% endif %}
+        </div>
+        <h2 class="card-title">{{ exchange.university }}</h2>
+        <p>{{ exchange.description }}</p>
+        <dl class="facts">
+          <div>
+            <dt>Мови навчання</dt>
+            <dd>
+              {{ exchange.languages }}
+            </dd>
+          </div>
+          <div>
+            <dt>Місць</dt>
+            <dd>
+              {{ exchange.seats|default_if_none:"—" }}
+            </dd>
+          </div>
+          <div>
+            <dt>Дедлайн</dt>
+            <dd>
+              {{ exchange.deadline|date:"d.m.Y" }}
+            </dd>
+          </div>
+        </dl>
+      </li>
+    {% empty %}
+      <li class="card muted">Програм поки немає</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
