@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+  Головна
+{% endblock %}
+{% block content %}
+  <section class="hero">
+    <p class="eyebrow">НаУКМА</p>
+    <h1>Факультет природничих наук</h1>
+    <div class="hero-actions">
+      <a class="button" href="{% url 'faculty:programs' %}">Спеціальності</a>
+      <a class="button button-ghost" href="{% url 'faculty:departments' %}">Кафедри</a>
+    </div>
+  </section>
+  <div class="layout-split">
+    <section class="prose">
+      <h2>Про факультет</h2>
+      <p>{{ faculty.description|linebreaksbr }}</p>
+    </section>
+    <aside class="card contact-card">
+      <h2>Контакти</h2>
+      <address>
+        <span class="meta-label">Адреса</span>
+        {{ faculty.address }}
+        <span class="meta-label">Телефон</span>
+        <a href="tel:{{ faculty.phone }}">{{ faculty.phone }}</a>
+        <span class="meta-label">Email</span>
+        <a href="mailto:{{ faculty.email }}">{{ faculty.email }}</a>
+      </address>
+    </aside>
+  </div>
+{% endblock %}

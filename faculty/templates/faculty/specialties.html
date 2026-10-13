@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+  Спеціальності
+{% endblock %}
+{% block content %}
+  <h1 class="page-title">Спеціальності</h1>
+  <ul class="cards">
+    {% for specialty in specialties %}
+      <li class="card">
+        <div class="card-tags">
+          <span class="tag">{{ specialty.code }}</span>
+          <span class="tag tag-muted">{{ specialty.get_level_display }}</span>
+        </div>
+        <h2 class="card-title">
+          <a href="{% url 'faculty:ind_specialty' specialty.id %}">{{ specialty.name }}</a>
+        </h2>
+        <p>{{ specialty.desc|truncatewords:50 }}</p>
+        <p class="card-meta">
+          <span class="meta-label">Координатор</span>
+          {{ specialty.coord_name }}, {{ specialty.coord_contact }}
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
