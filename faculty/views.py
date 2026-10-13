@@ -1,16 +1,18 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from faculty.models import Department, Specialty
+import faculty
+from faculty.models import Department, Specialty, FacultyInformation
 
 
 def main_page(request):
-    return HttpResponse("hi")
+    fac = FacultyInformation.objects.first()
+    return render(request, "faculty/main.html", {"faculty": fac})
 
 
 def programs(request):
     specialties = Specialty.objects.all()
-    return render(request, "faculty/specialties.html", {"specialties" : specialties})
+    return render(request, "faculty/specialties.html", {"specialties": specialties})
 
 
 def departments(request):
