@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+    Програми обміну
+{% endblock %}
+{% block content %}
+    <h1>Програми обміну</h1>
+<ul>
+{% for exchange in exchanges %}
+    <li>
+        {{ exchange.university }} <br> {{ exchange.description }} <br>
+        Мови: {{ exchange.languages }} <br>
+    Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>{{ exchange.slots }}</li>
+    {% empty %}
+    <li>Нема програм</li>
+{% endfor %}
+</ul>
+{% endblock %}
