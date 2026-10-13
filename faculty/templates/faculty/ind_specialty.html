@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2><a href="{% url 'faculty:ind_department' specialty.department.id %}">
+    {{ specialty.department.name }}</a></h2>
+<h1>{{ specialty.code }} {{ specialty.name }}  {{ specialty.get_level_display }}</h1>
+<p>{{ specialty.desc }}</p>
+<h2>Дисципліни</h2>
+<ul>
+    {% for subject in specialty.subjects %}
+        <li>{{ subject }}</li>
+        {% empty %}
+        <li>Немає дисциплін</li>
+    {% endfor %}
+</ul>
+<p> Координатор: {{ specialty.coord_name }}, {{ specialty.coord_contact }}</p>
+</body>
+</html>

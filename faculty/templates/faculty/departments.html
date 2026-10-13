@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for department in departments %}
+
+    <li><a href="{% url 'faculty:ind_department' department.id%}"
+    >{{  department.name  }}</a>,
+        Завідувач:
+        {{ department.boss }}
+    <ul>
+    {% for specialty in specialty.specialty_list %}
+        <li><a href="{% url 'faculty:ind_specialty' specialty.id %}"
+        >{{ specialty.name }}</a></li>
+    {% empty %}
+        <li> Немає Спеціальностей </li>
+    {% endfor %}
+    </ul>
+</li>
+{% endfor %}
+</ul>
+</body>
+</html>

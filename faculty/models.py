@@ -39,6 +39,10 @@ class Specialty(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    def subjects(self):
+        return [line.strip() for line in self.list_of_subjects.splitlines() if
+                line.strip()]
+
 
 class Teacher(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я")

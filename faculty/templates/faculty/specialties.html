@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Спеціальності</h1>
+<ul>
+    {% for specialty in specialties %}
+        <li><a href="{% url 'faculty:ind_specialty' specialty.id %}"
+        >{{ specialty.code }} {{ specialty.name }}</a>
+            <p> {{ specialty.desc|truncatewords:50 }}</p>
+            <p> Координатор: {{ specialty.coord_name }}, {{ specialty.coord_contact }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>
