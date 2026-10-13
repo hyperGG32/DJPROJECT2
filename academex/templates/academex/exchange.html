@@ -11,6 +11,7 @@
     {% endif %}<br> {{ exchange.description }} <br>
         Мови: {{ exchange.languages }} <br>
     Дедлайн подачі: {{ exchange.deadline|date:"d.m.Y" }} <br>Місць: {{ exchange.seats }}
+    <br>Прийом{% if exchange.is_closed %} завершено{% else %} триває{% endif %}
     </li>
     {% empty %}
     <li>Нема програм</li>
